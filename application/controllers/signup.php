@@ -25,6 +25,7 @@ class Signup extends CI_Controller {
 
     public function add(){
         if (isset($_POST) && $_POST != ""){
+            $_POST = $this->security->xss_clean($_POST);
             if(isset($_POST['token']) && $_POST['token'] != $_SESSION['token']){
                 echo "<script>alert('您的操作已过期');</script>";
                 $this->index('您的操作已过期');
@@ -38,6 +39,24 @@ class Signup extends CI_Controller {
                 || !isset($_POST['prcid']) || !isset($_POST['address']) || !isset($_POST['song']) || !isset($_POST['link'])){
                 echo "<script>alert('您提交的信息不完整');</script>";
                 $error = '您提交的信息不完整';
+                $this->index($error);
+                return false;
+            }
+            if(strlen($_POST['tel']) > 20){
+                echo "<script>alert('您提交的电话不正确');</script>";
+                $error = '您提交的电话不正确';
+                $this->index($error);
+                return false;
+            }
+            if(strlen($_POST['prcid']) > 20){
+                echo "<script>alert('您提交的身份证不正确');</script>";
+                $error = '您提交的身份证不正确';
+                $this->index($error);
+                return false;
+            }
+            if(strlen($_POST['age']) > 2){
+                echo "<script>alert('您提交的年龄不正确');</script>";
+                $error = '您提交的年龄不正确';
                 $this->index($error);
                 return false;
             }

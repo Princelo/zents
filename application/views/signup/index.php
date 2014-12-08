@@ -15,9 +15,9 @@
     <ul>
         <li><span class="input-span">姓名.Name</span><input name="name_chi" data-validate="required"/></li>
         <li><span class="input-span">英文名.English Name</span><input name="name_en" data-validate="required"/></li>
-        <li><span class="input-span">年龄.Age</span><input name="age" data-validate="required,number"/></li>
-        <li><span class="input-span">联系电话.Telephone Number</span><input name="tel" data-validate="required"/></li>
-        <li><span class="input-span">身份证号码.ID Card Number</span><input class="long" name="prcid" data-validate="required"/></li>
+        <li><span class="input-span">年龄.Age</span><input name="age" data-validate="required,number" maxlength="2"/></li>
+        <li><span class="input-span">联系电话.Telephone Number</span><input name="tel" data-validate="required" maxlength="20"/></li>
+        <li><span class="input-span">身份证号码.ID Card Number</span><input class="long" name="prcid" data-validate="required" maxlength="18"/></li>
         <li><span class="input-span">通讯地址.Address</span><input class="long" name="address" data-validate="required"/></li>
         <li><span class="input-span">个人参赛宣言.The slogan</span><input class="long" name="motto" maxlength="12"/></li>
         <li><span class="input-span">个人照片.Photo</span><input name="userfile" value="上传" onclick="//alert('upload')" type="file" class="" data-validate="required"/>
