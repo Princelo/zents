@@ -26,9 +26,9 @@ function is_voted($id, $votedlist){
             <? $n ++; ?>
             <li <?=($n%4==0)?"class=\"left\"":"";?>>
                 <div class="player-avatar">
-                    <img style="display:none;" src="<?=base_url()?>assets/images/rank-bg.png" />
-                    <img style="display:none;" class="no" src="<?=base_url()?>assets/images/no<?=$n;?>.png" />
-                    <img class="player-avatar-img" src="<?=base_url();?>assets/images/blank.png" data-original="<?=base_url()."uploads/".substr($v->pic, 0, strpos($v->pic, ".")) . "_crop_circle.png";?>" />
+                    <a href="<?=base_url()?>index.php/comment/index/<?=$v->id?>" title="点我留言" class="comment">
+                        <img class="player-avatar-img" src="<?=base_url();?>assets/images/blank.png" data-original="<?=base_url()."uploads/".substr($v->pic, 0, strpos($v->pic, ".")) . "_crop_circle.png";?>" />
+                    </a>
                 </div>
                 <div class="player-intro">
                     <label><?=$v->name_chi;?><span>&nbsp;/&nbsp;<?=$v->name_en;?></span></label>

@@ -2,12 +2,14 @@
 
 class Playerlist extends CI_Controller {
 
+    public $db;
     public function __construct(){
         parent::__construct();
         $this->load->model('MFlash', 'MFlash');
         $this->load->model('MPlayer', 'MPlayer');
         //$this->load->model('MThx', 'MThx');
         $this->load->library('pagination');
+        $this->db = $this->load->database('default', true);
     }
 
     public function index($offset = 0)
@@ -15,10 +17,11 @@ class Playerlist extends CI_Controller {
         if(isset($_POST['search']) && trim($_POST['search']) != ""){
             $data['flash'] = $this->MFlash->objGetFlashInfo();
             $_POST['search'] = trim($_POST['search']);
+            $search = $this->db->escape_like_str($_POST['search']);
             $config['base_url'] = base_url()."index.php/playerlist/index/";
-            $where = " and (name_chi like '%{$_POST['search']}%' or name_en like '%{$_POST['search']}%' ";
+            $where = " and (name_chi like '%{$search}%' or name_en like '%{$search}%' ";
             if(is_numeric($_POST['search'])){
-                $where .= " or id = '" . intval($_POST['search']) . "' )";
+                $where .= " or id = '" . intval($search) . "' )";
             }else{
                 $where .= ")";
             }

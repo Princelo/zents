@@ -10,7 +10,9 @@
             <div class="player-avatar">
                 <img src="<?=base_url()?>assets/images/rank-bg.png" />
                 <img class="no" src="<?=base_url()?>assets/images/no<?=$n;?>.png" />
-                <img class="player-avatar-img" src="<?=base_url();?>assets/images/blank.png" data-original="<?=base_url()."uploads/".substr($v->pic, 0, strpos($v->pic, ".")) . "_crop_circle.png";?>" />
+                <a href="<?=base_url()?>index.php/comment/index/<?=$v->id?>" class="comment" title="点我留言">
+                    <img class="player-avatar-img" src="<?=base_url();?>assets/images/blank.png" data-original="<?=base_url()."uploads/".substr($v->pic, 0, strpos($v->pic, ".")) . "_crop_circle.png";?>" />
+                </a>
             </div>
             <div class="player-intro">
                 <label><?=$v->name_chi;?><span>&nbsp;/&nbsp;<?=$v->name_en;?></span></label>

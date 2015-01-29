@@ -11,6 +11,9 @@
 
         <div class="info view_form">
             <h2>幻灯片  管理 </h2><h1 style="color:#f00;"><?=$error;?></h1>
+            <span class="red">
+                <?=$this->session->flashdata('flashdata', 'value');?>
+            </span>
             <table width="70%">
                 <!--<col width="50%">
                 <col width="50%">-->

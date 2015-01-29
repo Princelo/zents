@@ -5,6 +5,9 @@
 
         <div class="info view_form">
             <h2>选手  管理 </h2>
+            <span class="red">
+                <?=$this->session->flashdata('flashdata', 'value');?>
+            </span>
             <table width="70%">
                 <!--<col width="50%">
                 <col width="50%">-->

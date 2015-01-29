@@ -5,6 +5,9 @@
 
 
         <div class="toolbar type-button">
+            <span class="red">
+                <?=$this->session->flashdata('flashdata', 'value');?>
+            </span>
             <div class="c50l">
                 <h3>幻灯片编辑 </h3>
             </div>

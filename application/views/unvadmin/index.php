@@ -26,6 +26,9 @@
         <!-- begin: main content area #main -->
         <div id="main">
 
+            <span class="red">
+                <?=$this->session->flashdata('flashdata', 'value');?>
+            </span>
             <!-- begin: #col5 static column -->
             <div id="col5" role="main" class="one_column">
                 <div id="col5_content" class="clearfix"  align="center">

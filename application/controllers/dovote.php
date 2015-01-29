@@ -134,7 +134,7 @@ class Dovote extends CI_Controller {
             $binds = array($data['user_agent'], $data['ip'], $data['id'], time(), date("Y-m-d H:i:s"));
             $query = $this->objDB->query($sql, $binds);
             return true;
-        }else if ($row->count > 30){
+        }else if ($row->count > 10){
             $sql = "insert into failed_voted_log(user_agent, ip, pid, vote_datetime, strdate)
                 values (?, ?, ?, ?, ?)";
             $binds = array($data['user_agent'], $data['ip'], $data['id'], time(), date("Y-m-d H:i:s"));

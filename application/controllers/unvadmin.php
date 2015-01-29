@@ -73,6 +73,7 @@ class Unvadmin extends CI_Controller {
             redirect('unvadmin', 'refresh');
         }
         if(isset($_POST['search'])){
+            $_POST['search'] = $this->objDB->escape_like_str($_POST['search']);
             $config['base_url'] = base_url()."index.php/unvadmin/singer/";
             $config['total_rows'] =
                 $this->MPlayer->intGetPlayersCount(" and (name_chi like '%{$_POST['search']}%' or name_en like '%{$_POST['search']}%' or song like '%{$_POST['search']}%')");
@@ -116,6 +117,7 @@ class Unvadmin extends CI_Controller {
             redirect('unvadmin', 'refresh');
         }
         if(isset($_POST['search'])){
+            $_POST['search'] = $this->objDB->escape_like_str($_POST['search']);
             $config['base_url'] = base_url()."index.php/unvadmin/invalid/";
             $where = " and ( name_chi like '%{$_POST['search']}%'";
             $where .= " or name_en like '%{$_POST['search']}%'";
@@ -172,17 +174,17 @@ class Unvadmin extends CI_Controller {
             $result = $this->MPlayer->boolUpdatePlayerInfo($_POST);
         }
         if($result === true){
-            echo "<script>alert('SUCCESS');</script>";
+            $this->session->set_flashdata('flashdata', '更新成功');
             if(isset($_POST['id']) && $_POST['id'] != "")
-                $this->singeredit($_POST['id']);
+                redirect('unvadmin/singeredit/'.$_POST['id']);
             else
-                $this->singer();
+                redirect('unvadmin/singer');
         }else{
-            echo "<script>alert('ERROR');</script>";
+            $this->session->set_flashdata('flashdata', '錯誤');
             if(isset($_POST['id']) && $_POST['id'] != "")
-                $this->singeredit($_POST['id']);
+                redirect('unvadmin/singeredit/'.$_POST['id']);
             else
-                $this->singer();
+                redirect('unvadmin/singer');
         }
     }
 
@@ -192,11 +194,11 @@ class Unvadmin extends CI_Controller {
         }
         $result = $this->MPlayer->boolDelete($id);
         if($result === true){
-            echo "<script>alert('SUCCESS');</script>";
-            $this->singer();
+            $this->session->set_flashdata('flashdata', '刪除成功');
+            redirect('unvadmin/singer');
         }else{
-            echo "<script>alert('ERROR');</script>";
-            $this->singer();
+            $this->session->set_flashdata('flashdata', '錯誤');
+            redirect('unvadmin/singer');
         }
     }
 
@@ -250,11 +252,11 @@ class Unvadmin extends CI_Controller {
 
                 $result = $this->MFlash->boolAdd($data);
                 if($result === true){
-                    echo "<script>alert('SUCCESS');</script>";
-                    $this->flash();
+                    $this->session->set_flashdata('flashdata', '添加成功');
+                    redirect('unvadmin/flash');
                 }else{
-                    echo "<script>alert('ERROR');</script>";
-                    $this->flash();
+                    $this->session->set_flashdata('flashdata', 'ERROR');
+                    redirect('unvadmin/flash');
                 }
             }
         }
@@ -281,17 +283,17 @@ class Unvadmin extends CI_Controller {
             $result = $this->MFlash->boolUpdateFlashInfo($_POST);
         }
         if($result === true){
-            echo "<script>alert('SUCCESS');</script>";
+            $this->session->set_flashdata('flashdata', '更改成功');
             if(isset($_POST['id']) && $_POST['id'] != "")
-                $this->flashedit($_POST['id']);
+                redirect('unvadmin/flashedit/'.$_POST['id']);
             else
-                $this->flash();
+                redirect('unvadmin/flash');
         }else{
-            echo "<script>alert('ERROR');</script>";
+            $this->session->set_flashdata('flashdata', 'ERROR');
             if(isset($_POST['id']) && $_POST['id'] != "")
-                $this->flashedit($_POST['id']);
+                redirect('unvadmin/flashedit/'.$_POST['id']);
             else
-                $this->flash();
+                redirect('unvadmin/flash');
         }
     }
 
@@ -302,11 +304,11 @@ class Unvadmin extends CI_Controller {
         $result = false;
         $result = $this->MFlash->boolDelete($id);
         if($result === true){
-            echo "<script>alert('SUCCESS');</script>";
-            $this->flash();
+            $this->session->set_flashdata('flashdata', '刪除成功');
+            redirect('unvadmin/flash');
         }else{
-            echo "<script>alert('ERROR');</script>";
-            $this->flash();
+            $this->session->set_flashdata('flashdata', 'ERROR');
+            redirect('unvadmin/flash');
         }
 
     }

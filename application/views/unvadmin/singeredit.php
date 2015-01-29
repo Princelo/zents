@@ -5,6 +5,9 @@
 
 
         <div class="toolbar type-button">
+            <span class="red">
+                <?=$this->session->flashdata('flashdata', 'value');?>
+            </span>
             <div class="c50l">
                 <h3><?=($error!="")?"<span style=\"color:red\">".$error."</span>":"选手编辑(".$v->name_chi.")";?> </h3>
             </div>

@@ -5,6 +5,9 @@
 
 
         <div class="toolbar type-button">
+            <span class="red">
+                <?=$this->session->flashdata('flashdata', 'value');?>
+            </span>
             <div class="c50l">
                 <h3 style="color:#f00"><?=($error=="")?"修改密码":$error;?></h3>
             </div>

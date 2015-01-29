@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
-    <title>臻芝化妆品官方网站</title>
+    <title>臻LIVE臻声音 -- 活动官方网站</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <link rel="stylesheet" href="<?=base_url();?>assets/base.css"/>
     <link rel="stylesheet" href="<?=base_url();?>assets/flash.css"/>
@@ -73,6 +73,24 @@
         $(".play").fancybox({
             width      : '980px',
             height     : '600px',
+            type       : 'iframe',
+            wrapCSS    : 'fancybox-custom',
+            closeClick : true,
+            openEffect : 'none',
+            helpers : {
+                title : {
+                    type : 'inside'
+                },
+                overlay : {
+                    css : {
+                        'background' : 'rgba(238,238,238,0.85)'
+                    }
+                }
+            }
+        });
+        $(".comment").fancybox({
+            width      : '1024px',
+            height     : '595px',
             type       : 'iframe',
             wrapCSS    : 'fancybox-custom',
             closeClick : true,
