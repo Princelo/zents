@@ -1,6 +1,6 @@
 <div class="item-block vote-block">
     <label class="item-title">选手投票专区</label>
-    <a class="more" href="<?=base_url();?>index.php/playerlist">更多选手&gt;&gt;</a>
+    <a class="more" href="<?=base_url();?>index.php/playerlist50">更多50选手&gt;&gt;</a>
     <ul class="playerlist">
         <? if(isset($playerlist) && $playerlist != ""){ ?>
         <? $n = 0; ?>
@@ -19,7 +19,7 @@
                 <span>选手编号：<?=str_pad($v->id, 4, '0', STR_PAD_LEFT);?></span>
                 <p class="song">演唱歌曲：《<?=$v->song;?>》</p>
                 <p>个人宣言：<?=$v->motto;?></p>
-                <span>已有<label><?=$v->vote;?></label>人为TA投票</span>
+                <span>已有<label><?=$v->semifinals_vote;?></label>人为TA投票</span>
                 <div><a class="play" href="<?=$v->link;?>"></a><span style="display:none;">03&quot;&nbsp;55&#39;</span></div>
             </div>
         </li>

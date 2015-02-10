@@ -11,7 +11,7 @@ img{padding:0; margin:0; border:0; border:none;}
 .top-banner{position:absolute; background:url('images/banner.png'); left:-460px; top:44px; width:1460px; height:407px;}
 .top-logo{background:url('images/top-logo.png'); width:226px; height:63px; position:absolute; left:0; top:40px;}
 .menu{width:920px; height:146px; position:absolute; left:0; top:476px; padding-left:80px; padding-top:23px;}
-.menu>a{background:url('images/menu-button.png'); width:143px; height:76px; float:left; margin-right:34px; cursor:pointer;}
+.menu>li>a{background:url('images/menu-button.png'); width:143px; height:76px; float:left; margin-right:34px; cursor:pointer;}
 .menu-home:hover>span{background:url('images/home-highlight.png'); width:124px; height:139px; display: block; margin-top:-26px;}
 .menu-home>.current{background:url('images/home-highlight.png'); width:124px; height:139px; display: block; margin-top:-26px;}
 .menu-home span{background:url('images/home.png'); width:124px; height:139px; display:block; margin-top:-26px;}

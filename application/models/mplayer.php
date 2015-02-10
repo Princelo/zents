@@ -36,6 +36,31 @@ class MPlayer extends CI_Model
         return $data;
     }
 
+    public function objGetPlayersSemiFinals($limit = '', $where = " and is_valid = 1 ")
+    {
+        $query_sql = "";
+        $query_sql .= "
+            select
+                *
+                from
+                playerlist
+            where 1 = 1
+                and is_semifinals = true
+            {$where}
+            {$limit}
+        ";
+        $data = array();
+        $query = $this->objDB->query($query_sql);
+        if($query->num_rows() > 0){
+            foreach ($query->result() as $key => $val) {
+                $data[] = $val;
+            }
+        }
+        $query->free_result();
+
+        return $data;
+    }
+
     public function objGetPlayerInfo($id, $where = " and is_valid = 1 "){
         $query_sql = "";
         $query_sql .= "
@@ -86,6 +111,30 @@ class MPlayer extends CI_Model
         return $count;
     }
 
+    public function intGetPlayersSemiFinalsCount($where = " and is_valid = 1 ")
+    {
+        $query_sql = "";
+        $query_sql = "
+            select
+                count(1) as count
+                from
+                playerlist
+            where 1 = 1
+            and is_semifinals = true
+            {$where}
+        ";
+        $query = $this->objDB->query($query_sql);
+
+
+        if($query->num_rows() > 0) {
+            $count = $query->row()->count;
+        }
+
+        $query->free_result();
+
+        return $count;
+    }
+
     public function boolAddPlayer($data){
         $insert_sql = $this->objDB->insert_string("playerlist", $data);
         $result = $this->objDB->query($insert_sql);
@@ -99,6 +148,17 @@ class MPlayer extends CI_Model
 
     public function boolVote($id){
         $update_sql = "update playerlist set vote = vote + 1 where id = ?";
+        $binds = array($id);
+        $result = $this->objDB->query($update_sql, $binds);
+        if($result === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function boolSemiFinalsVote($id){
+        $update_sql = "update playerlist set semifinals_vote = coalesce(semifinals_vote,0) + 1 where id = ?";
         $binds = array($id);
         $result = $this->objDB->query($update_sql, $binds);
         if($result === true){

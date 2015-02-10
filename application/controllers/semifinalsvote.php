@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Vote extends CI_Controller {
+class Semifinalsvote extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
@@ -65,7 +65,6 @@ class Vote extends CI_Controller {
     }
 
     public function vote(){
-        exit('error');
         if(isset($_POST) && $_POST != ""){
             $result = $this->__validate_token('vote_token');
             if (!$result)
@@ -80,7 +79,7 @@ class Vote extends CI_Controller {
                 }
                 $result = false;
                 if(isset($_POST['id'])){
-                    $result = $this->MPlayer->boolVote($_POST['id']);
+                    $result = $this->MPlayer->boolSemiFinalsVote($_POST['id']);
                     $this->input->set_cookie(array('voted'=> ( $this->input->cookie('voted') + 1 ) ));
                     $data['vote_datetime'] = time();
                     $this->MVotelog->boolLog($data);

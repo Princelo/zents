@@ -38,7 +38,7 @@ function is_voted($id, $votedlist){
                     <span>已有<label><?=$v->vote;?></label>人为TA投票</span>
                     <div><a class="play" href="<?=$v->link;?>" ></a>
                         <? $is_voted = is_voted($v->id, $votedlist); ?>
-                        <a class="<?=($is_voted)?"yes":"vote";?>" href="<?=($is_voted)?"javascript:void(0);":base_url()."index.php/vote/index/".$v->id;?>"></a></div>
+                        <a class="<?=($is_voted)?"yes":"vote";?>" onclick="alert('海选投票已结束，请为50强选手投票')" href="<?=(true)?"javascript:void(0);":base_url()."index.php/vote/index/".$v->id;?>"></a></div>
                 </div>
             </li>
         <? } ?>

@@ -9,8 +9,8 @@
         <label><?=$v->name_chi;?><span>&nbsp;/&nbsp;<?=$v->name_en;?></span></label>
         <p class="song">演唱歌曲：《<?=$v->song;?>》</p>
         <p>个人宣言：<?=$v->motto;?></p>
-        <span>已有<label><?=$v->vote;?></label>为TA投票</span>
-        <?=form_open("dovote/index");?>
+        <span>已有<label><?=$v->semifinals_vote;?></label>为TA投票</span>
+        <?=form_open("semifinalsdevote/index");?>
         <div class="captcha-box">
             <?=$captcha;?><br />
             <label>请输入验证码:</label>

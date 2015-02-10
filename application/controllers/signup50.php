@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Signup extends CI_Controller {
+class Signup50 extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
@@ -9,7 +9,7 @@ class Signup extends CI_Controller {
         session_start();
     }
 
-    public function index($error = '报名时段已过，不接受报名。')
+    public function index($error = '')
     {
         $data = array();
         $data['error'] = $error;
@@ -19,13 +19,11 @@ class Signup extends CI_Controller {
         //$data['thxlist'] = $this->MThx->objGetThx(" limit 0, 10 ");
         $data['current'] = "signup";
         $this->load->view('templates/header', $data);
-        $this->load->view('signup/index', $data);
+        $this->load->view('signup50/index', $data);
         $this->load->view('templates/footer');
     }
 
     public function add(){
-        $this->index('报名时段已过，不接受报名。');
-        return false;
         if (isset($_POST) && $_POST != ""){
             $_POST = $this->security->xss_clean($_POST);
             if(isset($_POST['token']) && $_POST['token'] != $_SESSION['token']){
@@ -59,6 +57,13 @@ class Signup extends CI_Controller {
             if(strlen($_POST['age']) > 2){
                 echo "<script>alert('您提交的年龄不正确');</script>";
                 $error = '您提交的年龄不正确';
+                $this->index($error);
+                return false;
+            }
+            if(!$this->__validate_name($_POST['name_chi']))
+            {
+                echo "<script>alert('您未晋升50强，不能进行50强资料上传。')</script>";
+                $error = '您未晋升50强，不能进行50强资料上传。<br />';
                 $this->index($error);
                 return false;
             }
@@ -96,6 +101,7 @@ class Signup extends CI_Controller {
                     unset($data['userfile']);
                 if(isset($data['error']))
                     unset($data['error']);
+                $data['is_semifinals'] = '1';
                 $result = $this->MPlayer->boolAddPlayer($data);
                 if($result === true){
                     echo "<script>alert('报名成功');</script>";
@@ -242,5 +248,16 @@ class Signup extends CI_Controller {
             return false;
         }
         redirect('signup/index');
+    }
+
+    private function __validate_name($name)
+    {
+        $arrName = array('林家成', '钟倩敏', '张伟文', '王沁曦', '伍淑贤', '梁文婷', '王艺程', '谢晓珊', '小米',
+                        '曾丽华', '刘淑慧', '曾颖贤', '岑豪', '罗嘉怡', '张启业', '谢卫宁', '孙逊', '利丽施',
+                        '欧梨娜', '杨伟妍', '黄文诗', '黎荔菁', '杨小云', '林远达', '林桂深', '啊民', '黄东文',
+                        '袁敏非', '郭宝茵', '魏丽云', '黄成杰', '徐卉菲', '杨家玮', '陈婷婷', '维诗', '徐嘉蔚',
+                        '任韵', '张昊彦', '魏嘉明', '陈佩仪', '陈荣耿', '王嘉欣', '黄洪福', '叶娟', '曾铭', '梁志伟',
+                        '梁峻铭', '周伟权', '廖嘉沣', '吴舒婷');
+        return in_array($name, $arrName);
     }
 }

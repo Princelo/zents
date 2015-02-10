@@ -16,6 +16,7 @@ class Dovote extends CI_Controller {
 
 
     public function index(){
+        exit('error');
         if(isset($_POST) && $_POST != ""){
             /*if(!$this->__validate_token('vote_token')){
                 $this->error('您的操作已过期');

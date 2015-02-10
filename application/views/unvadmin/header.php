@@ -115,6 +115,7 @@
 
             <ul id="left_menu">
                 <li><a href='<?=base_url()?>index.php/unvadmin/singer' ><div>歌手管理 </div></a></li>
+                <li><a href='<?=base_url()?>index.php/unvadmin/singer50' ><div>50强 </div></a></li>
                 <li><a href='<?=base_url();?>index.php/unvadmin/flash' ><div>幻灯片管理 </div></a></li>
                 <li style="display:none;"><a href='<?=base_url();?>index.php/unvadmin/thx' ><div>鸣谢单位管理 </div></a></li>
                 <li><a href='<?=base_url();?>index.php/unvadmin/password' ><div>修改密码 </div></a></li>

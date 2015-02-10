@@ -112,6 +112,50 @@ class Unvadmin extends CI_Controller {
         $this->load->view('unvadmin/singer', $data);
     }
 
+    public function singer50($offset = 0){
+        if(!isset($_SESSION['admin'])){
+            redirect('unvadmin', 'refresh');
+        }
+        if(isset($_POST['search'])){
+            $_POST['search'] = $this->objDB->escape_like_str($_POST['search']);
+            $config['base_url'] = base_url()."index.php/unvadmin/singer50/";
+            $config['total_rows'] =
+                $this->MPlayer->intGetPlayersSemiFinalsCount(" and (name_chi like '%{$_POST['search']}%' or name_en like '%{$_POST['search']}%' or song like '%{$_POST['search']}%')");
+            $config['per_page'] = 12;
+            $this->pagination->initialize($config);
+            $data['page'] = $this->pagination->create_links();
+            $limit = '';
+            if($offset > 0){
+                $limit .= " limit {$offset}, " . ($config['per_page']) . " ";
+            }else{
+                $limit .= " limit 0, {$config['per_page']} ";
+            }
+            $where = " and ( name_chi like '%{$_POST['search']}%'";
+            $where .= " or name_en like '%{$_POST['search']}%'";
+            $where .= " or song like '%{$_POST['search']}%' )";
+            $data['valid'] = "all";
+            $data['playerlist'] = $this->MPlayer->objGetPlayersSemiFinals(" order by id desc ".$limit, $where);
+            $this->load->view('unvadmin/header', $data);
+            $this->load->view('unvadmin/singer50', $data);
+            return true;
+        }
+        $config['base_url'] = base_url()."index.php/unvadmin/singer50/";
+        $config['total_rows'] = $this->MPlayer->intGetPlayersSemiFinalsCount("");
+        $config['per_page'] = 12;
+        $this->pagination->initialize($config);
+        $data['page'] = $this->pagination->create_links();
+        $limit = '';
+        if($offset > 0){
+            $limit .= " limit {$offset}, " . ($config['per_page']) . " ";
+        }else{
+            $limit .= " limit 0, {$config['per_page']} ";
+        }
+        $data['playerlist'] = $this->MPlayer->objGetPlayersSemiFinals(" order by id desc, sort desc ".$limit, "");
+        $data['valid'] = "all";
+        $this->load->view('unvadmin/header', $data);
+        $this->load->view('unvadmin/singer50', $data);
+    }
+
     public function invalid($offset = 0){
         if(!isset($_SESSION['admin'])){
             redirect('unvadmin', 'refresh');

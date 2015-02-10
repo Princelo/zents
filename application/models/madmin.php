@@ -28,7 +28,10 @@ class MAdmin extends CI_Model
         $data = array();
         $query = $this->objDB->query($query_sql, $binds);
         if($query->num_rows() > 0){
-            return true;
+            if($query->result()[0]->count > 0 )
+                return true;
+            else
+                return false;
         }else{
             return false;
         }

@@ -29,7 +29,8 @@ class Home extends CI_Controller {
     {
         $data = array();
         $data['flash'] = $this->MFlash->objGetFlashInfo();
-        $data['playerlist'] = $this->MPlayer->objGetPlayers(" order by vote desc, sort desc limit 0, 8");
+        //$data['playerlist'] = $this->MPlayer->objGetPlayers(" order by vote desc, sort desc limit 0, 8");
+        $data['playerlist'] = $this->MPlayer->objGetPlayersSemiFinals(" order by semifinals_vote desc, sort desc limit 0, 8");
         //$data['thxlist'] = $this->MThx->objGetThx(" limit 0, 10 ");
         $data['current'] = "home";
         $this->load->view('templates/header', $data);

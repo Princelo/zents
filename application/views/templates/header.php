@@ -106,7 +106,7 @@
                 }
             }
         });
-        $(".vote").fancybox({
+        /*$(".vote").fancybox({
             width      : '615px',
             height     : '520px',
             type       : 'iframe',
@@ -123,7 +123,25 @@
                     }
                 }
             }
-        });
+        });*/
+        $(".semivote").fancybox({
+         width      : '615px',
+         height     : '520px',
+         type       : 'iframe',
+         wrapCSS    : 'fancybox-custom',
+         closeClick : true,
+         openEffect : 'none',
+         helpers : {
+         title : {
+         type : 'inside'
+         },
+         overlay : {
+         css : {
+         'background' : 'rgba(238,238,238,0.85)'
+         }
+         }
+         }
+         });
         $("a.tutorial").lightBox();
         $(".side ul li").hover(function(){
             $(this).find(".sidebox").stop().animate({"width":"124px"},200).css({"opacity":"1","filter":"Alpha(opacity=100)","background":"#ae1c1c"})
@@ -136,6 +154,47 @@
         $('html,body').animate({'scrollTop':0},300);
     }
     </script>
+    <style type="">
+        .li-vote {position: relative;}
+        .li-signup {position: relative;}
+        .li-vote:hover .dropdown-menu{display:block;}
+        .li-signup:hover .dropdown-menu{display:block;}
+        .dropdown-menu{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            float: left;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            list-style: none;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding;
+            background-clip: padding-box;
+            width:140px;
+            padding-left:3px;
+        }
+        .dropdown-menu li{
+            line-height: 20px;
+            display: list-item;
+            text-align: -webkit-match-parent;
+            padding:0;
+        }
+        .dropdown-menu li a{color:#000; text-decoration: none; display: block; width:143px; padding-left:14px;
+            line-height: 50px;}
+        .dropdown-menu li a:hover{color:#fff; background:#007dbc;}
+    </style>
 
 </head>
 <body>
@@ -148,13 +207,41 @@
         <a href="" class="top-logo"></a>
         <div class="top-banner">
         </div>
-        <div class="menu">
-            <a class="menu-home" href="<?=base_url();?>"><span class="<?=($current=="home")?"current":"";?>"></span></a>
-            <a class="menu-intro" href="<?=base_url();?>#intro"><span class="<?=($current=="home")?"intro":"";?>"></span></a>
-            <a class="menu-vote" href="<?=base_url();?>index.php/playerlist"><span class="<?=($current=="playerlist")?"current":"";?>"></span></a>
-            <a class="menu-signup" href="<?=base_url();?>index.php/signup"><span class="<?=($current=="signup")?"current":"";?>"></span></a>
-            <a class="menu-contact" href="<?=base_url();?>index.php/contact"><span class="<?=($current=="contact")?"current":"";?>"></span></a>
-        </div>
+        <ul class="menu">
+            <li>
+                <a class="menu-home" href="<?=base_url();?>"><span class="<?=($current=="home")?"current":"";?>"></span></a>
+            </li>
+            <li>
+                <a class="menu-intro" href="<?=base_url();?>#intro"><span class="<?=($current=="home")?"intro":"";?>"></span></a>
+            </li>
+            <li class="li-vote">
+                <a class="menu-vote" href="javascript:;">
+                    <span class="<?=($current=="playerlist")?"current":"";?>"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="<?=base_url()?>index.php/playerlist50">50强投票</a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url()?>index.php/playerlist">海选投票</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="li-signup">
+                <a class="menu-signup" href="javascript:;""><span class="<?=($current=="signup")?"current":"";?>"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="<?=base_url()?>index.php/signup50">50强报名</a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url()?>index.php/signup">海选报名</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="menu-contact" href="<?=base_url();?>index.php/contact"><span class="<?=($current=="contact")?"current":"";?>"></span></a>
+            </li>
+        </ul>
         <div class="bann-content">
             <div class="corner"></div>
             <div class="product-slide">

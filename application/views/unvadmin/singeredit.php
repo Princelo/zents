@@ -87,6 +87,10 @@
                         <th>票数</th>
                         <td><input disabled="disabled" value="<?=$v->vote;?>" /></td>
                     </tr>
+                    <tr>
+                        <th>50强票数</th>
+                        <td><input disabled="disabled" value="<?=$v->semifinals_vote;?>" /></td>
+                    </tr>
 
 
                     <tr>
